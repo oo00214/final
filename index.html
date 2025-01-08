@@ -1,113 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>เลือกเมนู - ร้านบุฟเฟ่ต์</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <header class="navbar">
-        <h1>อิ่มไหม Buffet</h1>
-        <nav>
-            <ul>
-                <li><a href="#fresh-menu">อาหารสด</a></li>
-                <li><a href="#vegetable-menu">ผัก</a></li>
-                <li><a href="#snack-menu">ของทานเล่น</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="menu-container">
-        <!-- เมนูอาหารสด -->
-        <section class="menu-section" id="fresh-menu">
-            <h2>เมนูอาหารสด</h2>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <img src="images/item1.jpg" alt="วากิว A6 สไลด์">
-                    <div class="item-name">วากิว A6 สไลด์</div>
-                    <div class="item-price">150 บาท</div>
-                    <div class="quantity-controls">
-                        <button data-name="วากิว A6 สไลด์" data-price="150" onclick="updateQuantity(this, 'decrease')">-</button>
-                        <span class="quantity-display" id="วากิว A6 สไลด์">0</span>
-                        <button data-name="วากิว A6 สไลด์" data-price="150" onclick="updateQuantity(this, 'increase')">+</button>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <img src="images/item2.jpg" alt="สามชั้นสไลด์">
-                    <div class="item-name">สามชั้นสไลด์</div>
-                    <div class="item-price">99 บาท</div>
-                    <div class="quantity-controls">
-                        <button data-name="สามชั้นสไลด์" data-price="99" onclick="updateQuantity(this, 'decrease')">-</button>
-                        <span class="quantity-display" id="สามชั้นสไลด์">0</span>
-                        <button data-name="สามชั้นสไลด์" data-price="99" onclick="updateQuantity(this, 'increase')">+</button>
-                    </div>
-                </div>
+    <div class="container">
+        <h1 class="text-center mb-4">ร้านบุฟเฟ่ต์</h1>
+        <section id="menu">
+            <h2>เมนูอาหาร</h2>
+            <form id="menu-form">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>เมนู</th>
+                            <th>ราคา (บาท)</th>
+                            <th>เลือกจำนวน</th>
+                        </tr>
+                    </thead>
+                    <tbody id="menu-table">
+                        <!-- เมนูจะแสดงด้วย JavaScript -->
+                    </tbody>
+                </table>
+            </form>
+            <div class="text-center">
+                <button id="next-button" class="btn btn-primary mt-3">ไปหน้าสรุปบิล</button>
             </div>
         </section>
+    </div>
 
-        <!-- เมนูผัก -->
-        <section class="menu-section" id="vegetable-menu">
-            <h2>เมนูผัก</h2>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <img src="images/vegetable1.jpg" alt="เห็ดเข็มทอง">
-                    <div class="item-name">เห็ดเข็มทอง</div>
-                    <div class="item-price">50 บาท</div>
-                    <div class="quantity-controls">
-                        <button data-name="เห็ดเข็มทอง" data-price="50" onclick="updateQuantity(this, 'decrease')">-</button>
-                        <span class="quantity-display" id="เห็ดเข็มทอง">0</span>
-                        <button data-name="เห็ดเข็มทอง" data-price="50" onclick="updateQuantity(this, 'increase')">+</button>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <img src="images/vegetable2.jpg" alt="ผักบุ้ง">
-                    <div class="item-name">ผักบุ้ง</div>
-                    <div class="item-price">40 บาท</div>
-                    <div class="quantity-controls">
-                        <button data-name="ผักบุ้ง" data-price="40" onclick="updateQuantity(this, 'decrease')">-</button>
-                        <span class="quantity-display" id="ผักบุ้ง">0</span>
-                        <button data-name="ผักบุ้ง" data-price="40" onclick="updateQuantity(this, 'increase')">+</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- เมนูของทานเล่น -->
-        <section class="menu-section" id="snack-menu">
-            <h2>เมนูของทานเล่น</h2>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <img src="images/snack1.jpg" alt="มันฝรั่งทอด">
-                    <div class="item-name">มันฝรั่งทอด</div>
-                    <div class="item-price">50 บาท</div>
-                    <div class="quantity-controls">
-                        <button data-name="มันฝรั่งทอด" data-price="50" onclick="updateQuantity(this, 'decrease')">-</button>
-                        <span class="quantity-display" id="มันฝรั่งทอด">0</span>
-                        <button data-name="มันฝรั่งทอด" data-price="50" onclick="updateQuantity(this, 'increase')">+</button>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <img src="images/snack2.jpg" alt="หอมทอด">
-                    <div class="item-name">หอมทอด</div>
-                    <div class="item-price">45 บาท</div>
-                    <div class="quantity-controls">
-                        <button data-name="หอมทอด" data-price="45" onclick="updateQuantity(this, 'decrease')">-</button>
-                        <span class="quantity-display" id="หอมทอด">0</span>
-                        <button data-name="หอมทอด" data-price="45" onclick="updateQuantity(this, 'increase')">+</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <button class="next-button" onclick="goToBill()">ถัดไป</button>
-    </footer>
-
-    <script src="menu.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // เรียกเมนูเริ่มต้น
+        renderMenu();
+    </script>
 </body>
 
 </html>
