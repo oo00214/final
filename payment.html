@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชำระเงิน</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">หน้าชำระเงิน</h1>
+
+        <!-- สรุปยอดเงิน -->
+        <div class="text-center mb-4">
+            <h3>ยอดสุทธิ: <span id="final-price-display">0</span> บาท</h3>
+        </div>
+
+        <!-- ปุ่มยืนยันชำระเงิน -->
+        <div class="text-center">
+            <button class="btn btn-success btn-lg" id="confirm-payment">ยืนยันการชำระเงิน</button>
+        </div>
+
+        <!-- กลับไปหน้าเมนู -->
+        <div class="text-center mt-4">
+            <a href="index.html" class="btn btn-secondary">กลับไปหน้าเมนู</a>
+        </div>
+    </div>
+
+    <script>
+        // แสดงยอดสุทธิจาก LocalStorage
+        const finalPrice = localStorage.getItem('finalPrice') || '0.00';
+        document.getElementById('final-price-display').textContent = finalPrice;
+
+        // ยืนยันชำระเงิน
+        document.getElementById('confirm-payment').addEventListener('click', () => {
+            alert(`ชำระเงินสำเร็จ! ยอดสุทธิ: ${finalPrice} บาท`);
+            localStorage.removeItem('cart'); // ล้างข้อมูลตะกร้า
+            localStorage.removeItem('finalPrice'); // ล้างยอดสุทธิ
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

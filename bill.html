@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <h1>สรุปรายการ</h1>
+    </header>
+
+    <main class="bill-container">
+        <table id="bill-table">
+            <thead>
+                <tr>
+                    <th>รายการ</th>
+                    <th>ราคา</th>
+                    <th>จำนวน</th>
+                    <th>ราคารวม</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- รายการในตะกร้าจะถูกเพิ่มที่นี่ -->
+            </tbody>
+        </table>
+
+        <div class="total-amount">
+            <h2>ยอดรวมทั้งหมด: <span id="total-price">0</span> บาท</h2>
+        </div>
+    </main>
+
+    <footer>
+        <button onclick="goBack()">ย้อนกลับ</button>
+    </footer>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const billTableBody = document.querySelector('#bill-table tbody');
+        let totalPrice = 0;
+
+        cart.forEach((item) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.price} บาท</td>
+                <td>${item.quantity}</td>
+                <td>${item.price * item.quantity} บาท</td>
+            `;
+            billTableBody.appendChild(row);
+
+            totalPrice += item.price * item.quantity;
+        });
+
+        document.getElementById('total-price').textContent = totalPrice;
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>
